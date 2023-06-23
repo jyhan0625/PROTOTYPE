@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PROTOTYPE</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1 id="title">HUFSWiKi</h1>
+    <pre id="text"></pre>
+    <button onclick="openPopup('edit.html','수정')">수정</button> <br>
+    <button onclick="openPopup('new.html','추가')">추가</button>
+
+    <script src="READER.js"></script>
+    <script>
+
+        function openPopup(URL,Name) {
+        
+        var _width = '730';
+        var _height = '600';
+
+        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+        var _left = Math.ceil(( window.screen.width - _width )/2);
+        var _top = Math.ceil(( window.screen.height - _height )/2); 
+
+        window.open(URL, Name, 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+
+        }
+        
+        window.addEventListener('DOMContentLoaded', function () {
+            READER().then(function (contents) {
+                var pre = document.getElementById('text');
+                contents = contents.split("-_-_-")
+                pre.textContent = contents.join("\n");
+            });
+        });
+
+    </script>
+</body>
+</html>
